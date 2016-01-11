@@ -28,4 +28,6 @@ RUN chmod a+x /data/*.sh
 # # ENV TERM="xterm-color"
 
 EXPOSE 22
+EXPOSE 8899
+EXPOSE 9999
 CMD ["/data/run.sh"]
