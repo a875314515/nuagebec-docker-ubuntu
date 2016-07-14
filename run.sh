@@ -1,4 +1,6 @@
 #!/bin/bash
+ssserver -p 9999 -k 111111a -m aes-256-cfb --user nobody -d start
+
 if [ ! -f /data/persistent/.root_pw_set ]; then
 	/data/set_root_pw.sh
 fi
