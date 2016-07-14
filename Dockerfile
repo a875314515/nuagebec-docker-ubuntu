@@ -4,12 +4,11 @@ MAINTAINER Michaël Faille <michael@faille.io>
 ADD sources.list.trusty /sources.list.trusty
 RUN cp sources.list.trusty /etc/apt/sources.list
 # Install packages
-RUN apt-get update -y && apt-get -y upgrade && DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server ca-certificates pwgen supervisor git tar vim-nox vim-syntax-go wget  --no-install-recommends && apt-get clean  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update -y && apt-get -y upgrade && DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server ca-certificates pwgen supervisor git tar vim-nox vim-syntax-go python-pip wget  --no-install-recommends && apt-get clean  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # #https://github.com/docker/docker/issues/6103
 RUN mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config && sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config && sed -ri 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
-RUN apt-get install -y python-pip
 RUN pip install shadowsocks
 
 ADD shad /etc/init.d/shad
