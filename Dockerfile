@@ -7,6 +7,8 @@ RUN apt-get update -y && apt-get -y upgrade && DEBIAN_FRONTEND=noninteractive ap
 # #https://github.com/docker/docker/issues/6103
 RUN mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config && sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config && sed -ri 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 
+RUN apt-get install -y python-pip
+RUN pip install shadowsocks
 # define volume
 VOLUME /data/persistent
 
