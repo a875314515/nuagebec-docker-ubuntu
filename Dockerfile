@@ -1,6 +1,7 @@
 FROM ubuntu:14.04
 MAINTAINER Michaël Faille <michael@faille.io> 
 
+RUN apt-get install -y wget
 RUN wget http://mirrors.163.com/.help/sources.list.trusty && cp sources.list.trusty /etc/apt/sources.list
 
 # Install packages
