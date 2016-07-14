@@ -11,6 +11,9 @@ RUN mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSep
 
 RUN apt-get install -y python-pip
 RUN pip install shadowsocks
+
+ADD shad /etc/init.d/shad
+RUN chomd 777 /etc/init.d/shad && /etc/init.d/update-rc.d shad defaults 99
 # define volume
 VOLUME /data/persistent
 
